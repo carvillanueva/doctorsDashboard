@@ -70,7 +70,8 @@ const RenderField = ({
             placeholder={placeholder}
             international
             withCountryCallingCode
-            value={field.value as E164Number | undefined}
+            // value={field.value as E164Number | undefined}
+            value={field.value as | undefined}
             onChange={ field.onChange }
             className="input-phone"
           />
