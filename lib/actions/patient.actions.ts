@@ -1,6 +1,8 @@
 "use server";
 
 import { ID, Query } from "node-appwrite";
+import { InputFile } from "node-appwrite/file";
+
 import {
   BUCKET_ID,
   DATABASE_ID,
@@ -12,8 +14,6 @@ import {
   users,
 } from "../appwrite.config";
 import { parseStringify } from "../utils";
-
-import { InputFile } from "node-appwrite/file";
 
 // CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
@@ -41,14 +41,17 @@ export const createUser = async (user: CreateUserParams) => {
   }
 };
 
+// GET USER
 export const getUser = async (userId: string) => {
   try {
-    // Get user by id -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#get
     const user = await users.get(userId);
 
     return parseStringify(user);
   } catch (error) {
-    console.error("An error occurred while getting user:", error);
+    console.error(
+      "An error occurred while retrieving the user details:",
+      error
+    );
   }
 };
 
