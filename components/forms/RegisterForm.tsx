@@ -288,9 +288,34 @@ const RegisterForm = ({ user }: { user: User }) => {
           label="Scanned Identification Document"
           renderSkeleton={(field) => (
             <FormControl>
-              <FileUploader></FileUploader>
+              <FileUploader files={field.value} onChanage={field.onChanage} />
             </FormControl>
           )}
+        />
+
+        <section className="space-y-6">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Consent and Privacy</h2>
+          </div>
+        </section>
+
+        <CustomFormField
+          fieldType={FormFieldType.CHECKBOX}
+          control={form.control}
+          name="treatmentConsent"
+          label="I consetnt to treatment"
+        />
+        <CustomFormField
+          fieldType={FormFieldType.CHECKBOX}
+          control={form.control}
+          name="disclosureConsent"
+          label="I consetnt to disclosure of information"
+        />
+        <CustomFormField
+          fieldType={FormFieldType.CHECKBOX}
+          control={form.control}
+          name="privacyConsent"
+          label="I consetnt to privacy policy"
         />
 
         <div className="flex flex-col gap-6 xl:flex-row"></div>
