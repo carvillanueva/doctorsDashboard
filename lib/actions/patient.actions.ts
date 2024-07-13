@@ -45,7 +45,7 @@ export const createUser = async (user: CreateUserParams) => {
 export const getUser = async (userId: string) => {
   try {
     const user = await users.get(userId);
-    console.log("User details:", user);
+    // console.log("User details:", user);
     return parseStringify(user);
   } catch (error) {
     console.error(
