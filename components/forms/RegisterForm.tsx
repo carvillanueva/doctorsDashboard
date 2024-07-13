@@ -41,13 +41,15 @@ const RegisterForm = ({ user }: { user: User }) => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof PatientFormValidation>) {
-    setIsLoading(true);
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    setIsLoading(true);
+
+    // Store file info in form data as
     let formData;
     if (
       values.identificationDocument &&
-      values.identificationDocument.length > 0
+      values.identificationDocument?.length > 0
     ) {
       const blobFile = new Blob([values.identificationDocument[0]], {
         type: values.identificationDocument[0].type,

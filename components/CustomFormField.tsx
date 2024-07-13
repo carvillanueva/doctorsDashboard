@@ -145,7 +145,7 @@ const RenderField = ({
             <Checkbox
               id={props.name}
               checked={field.value}
-              onCheckedChange={field.onChanage}
+              onCheckedChange={field.onChange}
             />
             <label htmlFor={props.name} className="checkbox-label">
               {props.label}
