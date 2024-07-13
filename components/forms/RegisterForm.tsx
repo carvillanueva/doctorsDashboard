@@ -24,6 +24,8 @@ import { SelectItem } from "../ui/select";
 import Image from "next/image";
 import FileUploader from "../FileUploader";
 
+
+
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -337,8 +339,6 @@ const RegisterForm = ({ user }: { user: User }) => {
           name="privacyConsent"
           label="I consetnt to privacy policy"
         />
-
-        <div className="flex flex-col gap-6 xl:flex-row"></div>
 
         <SubmitButton isLoading={isLoading}> Get Started</SubmitButton>
       </form>
