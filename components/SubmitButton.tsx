@@ -9,6 +9,9 @@ interface ButtonProps {
 }
 
 const SubmitButton = ({ isLoading, className, children }: ButtonProps) => {
+  console.log("isLoading", isLoading);
+  console.log("children", children);
+  console.log("className", className);
   return (
     <Button
       type="submit"
