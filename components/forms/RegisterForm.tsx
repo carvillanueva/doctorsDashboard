@@ -6,7 +6,6 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl } from "@/components/ui/form";
 import CustomFormField from "../CustomFormField";
-import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { PatientFormValidation, UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
@@ -23,8 +22,7 @@ import { Label } from "../ui/label";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
 import FileUploader from "../FileUploader";
-
-
+import SubmitButton from "../SubmitButton";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -33,7 +31,6 @@ const RegisterForm = ({ user }: { user: User }) => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     resolver: zodResolver(PatientFormValidation),
-    // @ts-ignore
     defaultValues: {
       ...PatientFormDefaultValues,
       name: "",
@@ -44,8 +41,6 @@ const RegisterForm = ({ user }: { user: User }) => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof PatientFormValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     setIsLoading(true);
 
     // Store file info in form data as
@@ -72,7 +67,7 @@ const RegisterForm = ({ user }: { user: User }) => {
       };
       // @ts-ignore
       const patient = await registerPatient(patientData);
-      if (patient) router.push(`patients/${user.$id}/new-appointment`)
+      if (patient) router.push(`/patients/${user.$id}/new-appointment`);
     } catch (error) {
       console.error(error);
     }
@@ -340,7 +335,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           label="I consetnt to privacy policy"
         />
 
-        <SubmitButton isLoading={isLoading}> Get Started</SubmitButton>
+        <SubmitButton isLoading={isLoading}>Lets get started!</SubmitButton>
       </form>
     </Form>
   );
