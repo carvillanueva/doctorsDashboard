@@ -3,14 +3,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import { Form, FormControl } from "@/components/ui/form";
 import CustomFormField from "../CustomFormField";
 import { useState } from "react";
-import { PatientFormValidation, UserFormValidation } from "@/lib/validation";
+import { PatientFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
-import { createUser, registerPatient } from "@/lib/actions/patient.actions";
-import { FormFieldType } from "./PatientForm";
+import { registerPatient } from "@/lib/actions/patient.actions";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import {
   Doctors,
@@ -23,6 +21,16 @@ import { SelectItem } from "../ui/select";
 import Image from "next/image";
 import FileUploader from "../FileUploader";
 import SubmitButton from "../SubmitButton";
+
+export enum FormFieldType {
+  INPUT = "input",
+  TEXTAREA = "textarea",
+  PHONE_INPUT = "phoneInput",
+  CHECKBOX = "checkbox",
+  DATE_PICKER = "datePicker",
+  SELECT = "select",
+  SKELETON = "skeleton",
+}
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
