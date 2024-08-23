@@ -16,6 +16,7 @@ export const createAppointment = async (appointment: CreateAppointmentParams) =>
       ID.unique(),
       appointment
     );
+    console.log("Appointment created successfully:", newAppointment);
 
     return parseStringify(newAppointment);
   } catch (error) {
