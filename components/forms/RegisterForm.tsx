@@ -21,16 +21,17 @@ import { SelectItem } from "../ui/select";
 import Image from "next/image";
 import FileUploader from "../FileUploader";
 import SubmitButton from "../SubmitButton";
+import { FormFieldType } from "./PatientForm";
 
-export enum FormFieldType {
-  INPUT = "input",
-  TEXTAREA = "textarea",
-  PHONE_INPUT = "phoneInput",
-  CHECKBOX = "checkbox",
-  DATE_PICKER = "datePicker",
-  SELECT = "select",
-  SKELETON = "skeleton",
-}
+// export enum FormFieldType {
+//   INPUT = "input",
+//   TEXTAREA = "textarea",
+//   PHONE_INPUT = "phoneInput",
+//   CHECKBOX = "checkbox",
+//   DATE_PICKER = "datePicker",
+//   SELECT = "select",
+//   SKELETON = "skeleton",
+// }
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -80,7 +81,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     } catch (error) {
       console.error(error);
     }
-    setIsLoading(false);
+    // setIsLoading(false);
   }
 
   return (
@@ -90,8 +91,8 @@ const RegisterForm = ({ user }: { user: User }) => {
         className="space-y-12 flex-1"
       >
         <section className="space-y-4">
-          <h1 className="header">Welcome 👋</h1>
-          <p className="text-dark-700">Let us know more about yourself.</p>
+          <h1 className="header">Welcome, 👋</h1>
+          <p className="text-dark-700">Let us know more about you.</p>
         </section>
 
         <section className="space-y-6">
@@ -105,7 +106,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           control={form.control}
           name="name"
           label="Full Name"
-          placeholder="John Doe"
+          placeholder="Enter Your Name"
           iconSrc="/assets/icons/user.svg"
           iconAlt="user"
         />
@@ -116,16 +117,17 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="email"
             label="Email"
-            placeholder="johndoe@gmail.com"
+            placeholder="Enter Your Email"
             iconSrc="/assets/icons/email.svg"
             iconAlt="email"
           />
+
           <CustomFormField
             fieldType={FormFieldType.PHONE_INPUT}
             control={form.control}
             name="phone"
             label="Phone Number"
-            placeholder="(123) 456-7890"
+            placeholder="Enter Your Phone Number"
           />
         </div>
 
@@ -135,10 +137,8 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="birthDate"
             label="Date of Birth"
-            placeholder="johndoe@gmail.com"
-            iconSrc="/assets/icons/email.svg"
-            iconAlt="email"
           />
+
           <CustomFormField
             fieldType={FormFieldType.SKELETON}
             control={form.control}
@@ -173,10 +173,11 @@ const RegisterForm = ({ user }: { user: User }) => {
             label="Address"
             placeholder="14th Street, New York"
           />
+
           <CustomFormField
             fieldType={FormFieldType.INPUT}
             control={form.control}
-            name="oppucation"
+            name="occupation"
             label="Occupation"
             placeholder="Software Engineer"
           />
@@ -187,9 +188,10 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="emergencyContactName"
-            label="Emgergency Contact Name"
+            label="Emergency Contact Name"
             placeholder="Guardian's Name"
           />
+
           <CustomFormField
             fieldType={FormFieldType.PHONE_INPUT}
             control={form.control}
@@ -217,10 +219,10 @@ const RegisterForm = ({ user }: { user: User }) => {
               <div className="flex cursor-pointer items-center gap-2">
                 <Image
                   src={doctor.image}
-                  height={32}
                   width={32}
-                  alt={doctor.name}
-                  className="rounded-full border board-dark-500"
+                  height={32}
+                  alt="doctor"
+                  className="rounded-full border border-dark-500"
                 />
                 <p>{doctor.name}</p>
               </div>
@@ -236,12 +238,13 @@ const RegisterForm = ({ user }: { user: User }) => {
             label="Insurance Provider"
             placeholder="BlueCross BlueShield"
           />
+
           <CustomFormField
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="insurancePolicyNumber"
             label="Insurance Policy Number"
-            placeholder="ABC123456789"
+            placeholder="ABC123456"
           />
         </div>
 
@@ -251,14 +254,15 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="allergies"
             label="Allergies (if any)"
-            placeholder="Peanuts, Pollen, etc."
+            placeholder="Peanuts, Penicillin, Pollen, etc"
           />
+
           <CustomFormField
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
             name="currentMedication"
             label="Current Medication (if any)"
-            placeholder="Ibuprofen, Paracetamol, etc."
+            placeholder="Ibuprofrn 200mg, Paracetamol 500ml"
           />
         </div>
 
@@ -270,6 +274,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             label="Family Medical History"
             placeholder="Diabetes, Hypertension, etc."
           />
+
           <CustomFormField
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
@@ -303,7 +308,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           fieldType={FormFieldType.INPUT}
           control={form.control}
           name="identificationNumber"
-          label="identification Number"
+          label="Identification Number"
           placeholder="123456789"
         />
 
@@ -329,19 +334,19 @@ const RegisterForm = ({ user }: { user: User }) => {
           fieldType={FormFieldType.CHECKBOX}
           control={form.control}
           name="treatmentConsent"
-          label="I consetnt to treatment"
+          label="I consent to treatment"
         />
         <CustomFormField
           fieldType={FormFieldType.CHECKBOX}
           control={form.control}
           name="disclosureConsent"
-          label="I consetnt to disclosure of information"
+          label="I consent to desclosure of information"
         />
         <CustomFormField
           fieldType={FormFieldType.CHECKBOX}
           control={form.control}
           name="privacyConsent"
-          label="I consetnt to privacy policy"
+          label="I consent to privac policy"
         />
 
         <SubmitButton isLoading={isLoading}>Lets get started!</SubmitButton>
