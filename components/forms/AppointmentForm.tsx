@@ -60,23 +60,24 @@ const AppointmentForm = ({
         break;
     }
     try {
-        if (type === 'create' && patientId) {
-            const appointmentData = {
-                userId,
-                patient: patientId,
-                primaryPhysician: values.primaryPhysician,
-                schedule: new Date(values.schedule),
-                reason: values.reason!,
-                note: values.note,
-                status: status as Status
-            }
-            const appointment = await createAppointment(appointmentData);
-            if (appointment) {
-                form.reset();
-                router.push(`/app/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`);
-            }
+      if (type === "create" && patientId) {
+        const appointmentData = {
+          userId,
+          patient: patientId,
+          primaryPhysician: values.primaryPhysician,
+          schedule: new Date(values.schedule),
+          reason: values.reason!,
+          note: values.note,
+          status: status as Status,
+        };
+        const appointment = await createAppointment(appointmentData);
+        if (appointment) {
+          form.reset();
+          router.push(
+            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
+          );
         }
-
+      }
     } catch (error) {
       console.error(error);
     }
