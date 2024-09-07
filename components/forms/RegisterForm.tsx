@@ -81,7 +81,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     } catch (error) {
       console.error(error);
     }
-    // setIsLoading(false);
+    setIsLoading(false);
   }
 
   return (
