@@ -23,16 +23,6 @@ import FileUploader from "../FileUploader";
 import SubmitButton from "../SubmitButton";
 import { FormFieldType } from "./PatientForm";
 
-// export enum FormFieldType {
-//   INPUT = "input",
-//   TEXTAREA = "textarea",
-//   PHONE_INPUT = "phoneInput",
-//   CHECKBOX = "checkbox",
-//   DATE_PICKER = "datePicker",
-//   SELECT = "select",
-//   SKELETON = "skeleton",
-// }
-
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -74,6 +64,7 @@ const RegisterForm = ({ user }: { user: User }) => {
         birthDate: new Date(values.birthDate),
         identificationDocument: formData,
       };
+      console.log("Patient Data:", patientData);
       // @ts-ignore
       const patient = await registerPatient(patientData);
       console.log("Patient:", patient);

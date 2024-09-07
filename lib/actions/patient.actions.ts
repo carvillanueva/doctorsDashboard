@@ -6,10 +6,10 @@ import { InputFile } from "node-appwrite/file";
 import {
   BUCKET_ID,
   DATABASE_ID,
+  databases,
   ENDPOINT,
   PATIENT_COLLECTION_ID,
   PROJECT_ID,
-  databases,
   storage,
   users,
 } from "../appwrite.config";
@@ -83,12 +83,10 @@ export const registerPatient = async ({
     // Upload file ->  // https://appwrite.io/docs/references/cloud/client-web/storage#createFile
     let file;
     if (identificationDocument) {
-      const inputFile =
-        identificationDocument &&
-        InputFile.fromBuffer(
-          identificationDocument?.get("blobFile") as Blob,
-          identificationDocument?.get("fileName") as string
-        );
+      const inputFile = InputFile.fromBuffer(
+        identificationDocument?.get("blobFile") as Blob,
+        identificationDocument?.get("fileName") as string
+      );
 
       file = await storage.createFile(BUCKET_ID!, ID.unique(), inputFile);
     }
