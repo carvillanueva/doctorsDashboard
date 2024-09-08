@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,7 +25,7 @@ import { encryptKey } from "@/lib/utils";
 const PassKeyModal = () => {
   const router = useRouter();
   const path = usePathname();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [passKey, setPassKey] = useState("");
   const [error, setError] = useState("");
 
