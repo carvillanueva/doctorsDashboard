@@ -20,13 +20,13 @@ import {
 
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { encryptKey } from "@/lib/utils";
+import { decryptKey, encryptKey } from "@/lib/utils";
 
 const PassKeyModal = () => {
   const router = useRouter();
   const path = usePathname();
-  const [open, setOpen] = useState(true);
-  const [passKey, setPassKey] = useState("");
+  const [open, setOpen] = useState(false);
+  const [passkey, setPasskey] = useState("");
   const [error, setError] = useState("");
 
   const encryptedKey =
@@ -35,32 +35,36 @@ const PassKeyModal = () => {
       : null;
 
   useEffect(() => {
-    if (path) {
-      if (passKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+    const accessKey = encryptedKey && decryptKey(encryptedKey);
+
+    if (path)
+      if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY!.toString()) {
         setOpen(false);
         router.push("/admin");
       } else {
         setOpen(true);
       }
-    }
   }, [encryptedKey]);
+
+  const closeModal = () => {
+    setOpen(false);
+    router.push("/");
+  };
 
   const validatePasskey = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    if (passKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
-      const encryptedKey = encryptKey(passKey);
+
+    if (passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+      const encryptedKey = encryptKey(passkey);
+
       localStorage.setItem("accessKey", encryptedKey);
+
       setOpen(false);
     } else {
       setError("Invalid passkey. Please try again.");
     }
-  };
-
-  const closeModal = () => {
-    setOpen(false);
-    router.push("/");
   };
 
   return (
@@ -85,8 +89,8 @@ const PassKeyModal = () => {
         <div className="">
           <InputOTP
             maxLength={6}
-            value={passKey}
-            onChange={(value) => setPassKey(value)}
+            value={passkey}
+            onChange={(value) => setPasskey(value)}
           >
             <InputOTPGroup className="shad-otp">
               <InputOTPSlot className="shad-otp-slot" index={0} />
